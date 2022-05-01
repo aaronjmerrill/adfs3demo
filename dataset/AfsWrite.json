@@ -1,0 +1,17 @@
+{
+	"name": "AfsWrite",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AFS_Output",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation"
+			}
+		},
+		"schema": {}
+	}
+}
