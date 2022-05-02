@@ -2,7 +2,7 @@
 	"name": "AfsWrite",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AFS_Output",
+			"referenceName": "AFS_Input",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
