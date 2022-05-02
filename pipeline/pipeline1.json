@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy from S3 to fileshare",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
