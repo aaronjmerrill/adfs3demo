@@ -27,6 +27,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         )
         logging.info('created S3 resource')
     except Exception as e: 
+        return func.HttpResponse(
+            e,
+            status_code=500
+        )
         logging.info(e)
 
     s3.Object('adfs3demoinput').Put(Body=data)
