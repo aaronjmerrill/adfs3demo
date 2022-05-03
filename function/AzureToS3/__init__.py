@@ -15,9 +15,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     )
     logging.info('created az file client')
 
-    with open("goesToS3.json", "wb") as file_handle:
-        data = file_client.download_file()
-        data.readinto(file_handle)
+    # with open("goesToS3.json", "wb") as file_handle:
+    #     data = file_client.download_file()
+    #     data.readinto(file_handle)
+    data = file_client.download_file()
     logging.info('read file')
 
     s3 = boto3.resource(
@@ -28,7 +29,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     )
     logging.info('created S3 resource')
 
-    s3.Object('adfs3demoinput').Put(Body=file_handle)
+    s3.Object('adfs3demoinput').Put(Body=data)
     logging.info('uploaded file to S3')
 
     return func.HttpResponse(
