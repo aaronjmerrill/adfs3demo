@@ -13,9 +13,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         share_name='output',
         file_path='goesToS3.json'
     )
-    logging.info('create az file client')
+    logging.info('created az file client')
 
-    with open("DEST_FILE", "wb") as file_handle:
+    with open("goesToS3.json", "wb") as file_handle:
         data = file_client.download_file()
         data.readinto(file_handle)
     logging.info('read file')
