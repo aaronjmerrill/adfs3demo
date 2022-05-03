@@ -1,8 +1,6 @@
 import logging
-
 import azure.functions as func
 from azure.storage.fileshare import ShareFileClient
-
 import boto3
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -15,7 +13,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     )
     logging.info('created az file client')
     
-    data = file_client.download_file()
+    data = file_client.download_file().content_as_bytes()
     logging.info('read file')
 
     s3 = boto3.resource(
