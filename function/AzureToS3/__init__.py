@@ -20,7 +20,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     try:
         s3 = boto3.resource(
-            endpointUrl='https://s3.us-west-002.backblazeb2.com',
+            endpoint_url='https://s3.us-west-002.backblazeb2.com',
             service_name='s3',
             aws_access_key_id='002fdf2ee4eb9b00000000004',
             aws_secret_access_key='K002eu2wpB+ig0bBhmpO8D2Wc74U5tY'
