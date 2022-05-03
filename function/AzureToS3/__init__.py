@@ -27,7 +27,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('created S3 resource')
 
     try:
-        s3.Object('adfs3demoinput', 'goesToS3.json').Put(Body=data)
+        s3.Object('adfs3demoinput', 'goesToS3.json').put(Body=data)
         logging.info('uploaded file to S3')
     except Exception as e: 
         logging.info(e)
