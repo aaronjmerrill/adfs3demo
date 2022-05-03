@@ -1,24 +1,37 @@
 import logging
 
 import azure.functions as func
+from azure.storage.fileshare import ShareFileClient
 
+import boto3
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('Entered function')
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
+    file_client = ShareFileClient.from_connection_string(
+        conn_str='DefaultEndpointsProtocol=https;AccountName=saajmdemoadfs3;AccountKey=sTkr8MR+vXfcFsArmUWYIbnkZ1S/VQNSyCn/gJct+pvNbzAmF9NjUD7VAIEu16rlb1SVT07ahzja+AStgL1KoQ==;EndpointSuffix=core.windows.net',
+        share_name='output',
+        file_path='goesToS3.json'
+    )
+    logging.info('create az file client')
 
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+    with open("DEST_FILE", "wb") as file_handle:
+        data = file_client.download_file()
+        data.readinto(file_handle)
+    logging.info('read file')
+
+    s3 = boto3.resource(
+        endpointUrl='https://s3.us-west-002.backblazeb2.com',
+        service_name='s3',
+        aws_access_key_id='002fdf2ee4eb9b00000000004',
+        aws_secret_access_key='K002eu2wpB+ig0bBhmpO8D2Wc74U5tY'
+    )
+    logging.info('created S3 resource')
+
+    s3.Object('adfs3demoinput').Put(Body=file_handle)
+    logging.info('uploaded file to S3')
+
+    return func.HttpResponse(
+        "Successfully wrote to S3 bucket.",
+        status_code=200
+    )
