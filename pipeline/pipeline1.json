@@ -73,7 +73,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"functionName": "AzureToS3",
-					"method": "POST"
+					"method": "POST",
+					"body": "goesToS3.json"
 				},
 				"linkedServiceName": {
 					"referenceName": "func_write_to_s3",
