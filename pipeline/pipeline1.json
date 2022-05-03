@@ -51,6 +51,34 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "func write to s3",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [
+					{
+						"activity": "Copy from S3 to fileshare",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "AzureToS3",
+					"method": "POST"
+				},
+				"linkedServiceName": {
+					"referenceName": "func_write_to_s3",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []

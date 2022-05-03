@@ -1,0 +1,13 @@
+{
+	"name": "func_write_to_s3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureFunction",
+		"typeProperties": {
+			"functionAppUrl": "https://func-write-to-s3-adfs3demo.azurewebsites.net",
+			"authentication": "Anonymous",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEZGMjlERTRFLUQ3MEEtNEYxQS1CQTkxLTlFNkY3MTIzMUExRl80ZDBkMzdhMC1iYzY0LTQyODUtOTNkOC03NGQ3MWU2ZjJkZjUiDQp9"
+		}
+	}
+}
